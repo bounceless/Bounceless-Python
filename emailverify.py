@@ -11,7 +11,7 @@ class bouncelessOne():
     def __init__(self, key, email):
         self.key = key
         self.email = email
-        self.verif = "https://apps.bounceless.io/api/verifEmail?secret="
+        self.verif = "https://apps.bounceless.io/api/verifyEmail?secret="
         self.url = self.verif+self.key+"&email="+self.email
 
 
@@ -27,7 +27,7 @@ class bouncelessBulk():
         self.key = key
         self.name = 'File' + datenow.strftime("%Y-%m-%d %H:%M")
         self.user_file = user_file
-        self.url = 'https://apps.bounceless.io/api/verifApiFile?secret='+key+'&filename=%s' % self.name
+        self.url = 'https://apps.bounceless.io/api/verifyApiFile?secret='+key+'&filename=%s' % self.name
 
 
     def upload(self):
