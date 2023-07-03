@@ -1,9 +1,10 @@
 # Bounceless Python API
 
-This is a Python client for interacting with the Bounceless.io API for email verification. It provides two main features: 
+This Python client allows you to interact with the Bounceless.io API for email verification. The client supports the following features:
 
-1. Verifying a single email
-2. Bulk verifying emails from a CSV file
+1. Single email verification
+2. Bulk email verification from a CSV file
+3. Fetching verification results for a file
 
 ## Installation
 
@@ -15,7 +16,7 @@ git clone https://github.com/bounceless/Bounceless-Python.git
 
 ## Usage
 
-First, import the necessary classes from the `emailverify` module:
+Import the necessary classes from the `emailverify` module:
 
 ```python
 from emailverify import BouncelessOne, BouncelessBulk
@@ -23,7 +24,7 @@ from emailverify import BouncelessOne, BouncelessBulk
 
 ### Single Email Verification
 
-To verify a single email, you can use the `BouncelessOne` class. You will need to provide your API key and the email you want to verify:
+Use the `BouncelessOne` class to verify a single email. You will need to provide your API key and the email you wish to verify:
 
 ```python
 def verify_single_email():
@@ -36,7 +37,7 @@ def verify_single_email():
 
 ### Bulk Email Verification
 
-To verify a bulk of emails from a CSV file, you can use the `BouncelessBulk` class. You will need to provide your API key and the path to the CSV file:
+Use the `BouncelessBulk` class to verify a bulk of emails from a CSV file. Provide your API key and the path to the CSV file:
 
 ```python
 def verify_bulk_emails():
@@ -44,6 +45,17 @@ def verify_bulk_emails():
     # Replace 'path/to/file.csv' with the actual path to your CSV file
     bounceless_bulk = BouncelessBulk('YOUR_KEY', 'path/to/file.csv')
     bounceless_bulk.upload()
+```
+
+### Fetching Verification Results
+
+After a bulk upload, fetch the verification results using the `get_info()` method from the `BouncelessBulk` class. This method can also be used independently by providing the ID of a previously uploaded file:
+
+```python
+def get_bulk_info():
+    # Replace 'YOUR_KEY' with your actual API key
+    # Replace 'FILE_ID' with the actual ID of your uploaded file
+    bounceless_bulk = BouncelessBulk('YOUR_KEY', 'FILE_ID')
     response = bounceless_bulk.get_info()
     print(response)
 ```
@@ -54,6 +66,7 @@ Finally, call these functions in your main script:
 if __name__ == '__main__':
     verify_single_email()
     verify_bulk_emails()
+    get_bulk_info()
 ```
 
 ## License
